@@ -1,4 +1,4 @@
-# webpack + gulp + browser-sync template for Three.js
+# webpack + Babel + gulp + browser-sync template for Three.js
 
 ver 0.5あたり
 
@@ -15,7 +15,7 @@ Three.jsバージョン
 $ npm run start
 ```
 - start-serve : browser-sync
-- webpack-watch : webpack(typescript)
+- webpack-watch : webpack(babel)
 - gulp
   - pug
   - sass
@@ -27,15 +27,11 @@ $ npm webpack-watch
 ```
 などで単体起動も可能。
 
-### 使ってない
-- webpack-plainjs
-  tsではない普通のjsを使う場合に残してある
-
 ---
 
 # 全体の流れ
 
-gulp, webpack, browser-syncを平行起動、gulpとwebpackでhtml, cssまたはtypescriptを監視、コンパイルし保存。コンパイル済みのファイルをbrowser-syncで監視してブラウザをリロードする。
+gulp, webpack, browser-syncを平行起動、gulpとwebpackでhtml, cssまたはjsを監視、コンパイルし保存。コンパイル済みのファイルをbrowser-syncで監視してブラウザをリロードする。
 
 ---
 # 各機能
@@ -50,7 +46,7 @@ gulp, webpack, browser-syncを平行起動、gulpとwebpackでhtml, cssまたは
 
 ## webpack
 ```js
-/src/ts/app.ts
+/src/js/app.js
 ```
 をコンパイルし, /dist/app.bundle.jsとして保存
 

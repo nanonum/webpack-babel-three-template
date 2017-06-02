@@ -3,11 +3,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    app: './src/ts/app.ts',
+    app: './src/js/main.js',
     vendor: ['jquery', 'lodash', 'three'],
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js']
   },
   output: {
     filename: '[name].bundle.js',
@@ -15,18 +12,12 @@ module.exports = {
   },
   module:{
     rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          {loader: 'ts-loader'}
-        ]
-      }
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
     ]
   },
   plugins: [
     // new webpack.optimize.UglifyJsPlugin({ minimize:true }),
     // new webpack.optimize.OccurrenceOrderPlugin(),
-
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       chunks: ['app']
@@ -37,10 +28,5 @@ module.exports = {
         'window.jQuery': 'jquery'
     })
   ],
-  devtool: 'source-map',
-  // devServer: {
-  //   contentBase: 'dist',
-  //   port: 4000,
-  //   inline: true
-  // }
+  devtool: 'source-map'
 };

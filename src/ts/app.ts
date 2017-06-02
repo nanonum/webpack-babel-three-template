@@ -1,13 +1,23 @@
 'use strict'
+// module
 import Model from './model';
 import Background from './background';
+
+// lib
 import * as $ from 'jquery';
 import * as THREE from 'three';
 
 class Curve{
-  constructor(){
+  private twistness: number;
+  private coefficient: number;
+  private points: number[];
 
+  constructor(){
+    const twistness = Math.random() * Math.PI * 2;
+    const coefficient = (Math.random() * 10) - 5;
+    return this;
   }
+
 }
 
 class Three {

@@ -1,16 +1,57 @@
-webpackJsonp([0],{
-
-/***/ 3:
+webpackJsonp([0],[
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var background_1 = __webpack_require__(8);
-var $ = __webpack_require__(0);
-var THREE = __webpack_require__(1);
+var THREE = __webpack_require__(0);
+var Background = (function () {
+    function Background(opacity) {
+        this.opacity = opacity || 0.1;
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.OrthographicCamera(0, window.innerWidth, window.innerHeight, 0, 0, 1000);
+        this.createScene();
+    }
+    Background.prototype.createScene = function () {
+        var geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight, 10, 10);
+        var material = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            transparent: true,
+            opacity: this.opacity,
+        });
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = window.innerWidth / 2;
+        mesh.position.y = window.innerHeight / 2;
+        this.scene.add(mesh);
+    };
+    Background.prototype.render = function (renderer) {
+        renderer.render(this.scene, this.camera);
+    };
+    return Background;
+}());
+exports.Background = Background;
+exports.default = Background;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var background_1 = __webpack_require__(3);
+var $ = __webpack_require__(1);
+var THREE = __webpack_require__(0);
 var Curve = (function () {
     function Curve() {
+        var twistness = Math.random() * Math.PI * 2;
+        var coefficient = (Math.random() * 10) - 5;
+        return this;
     }
     return Curve;
 }());
@@ -59,44 +100,6 @@ $(function () {
 });
 
 
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var THREE = __webpack_require__(1);
-var Background = (function () {
-    function Background(opacity) {
-        this.opacity = opacity || 0.1;
-        this.scene = new THREE.Scene();
-        this.camera = new THREE.OrthographicCamera(0, window.innerWidth, window.innerHeight, 0, 0, 1000);
-        this.createScene();
-    }
-    Background.prototype.createScene = function () {
-        var geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight, 10, 10);
-        var material = new THREE.MeshBasicMaterial({
-            color: 0x000000,
-            transparent: true,
-            opacity: this.opacity,
-        });
-        var mesh = new THREE.Mesh(geometry, material);
-        mesh.position.x = window.innerWidth / 2;
-        mesh.position.y = window.innerHeight / 2;
-        this.scene.add(mesh);
-    };
-    Background.prototype.render = function (renderer) {
-        renderer.render(this.scene, this.camera);
-    };
-    return Background;
-}());
-exports.Background = Background;
-exports.default = Background;
-
-
 /***/ })
-
-},[3]);
+],[4]);
 //# sourceMappingURL=app.bundle.js.map
